@@ -1,0 +1,5 @@
+{
+    "require": {
+        "jossmp/sunatphp": "^1.7"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "name": "jossmp/sunatphp",
+    "description": "Clase para realizar consultas a sunat Peru mediante el numero de ruc o dni",
+    "type": "library",
+    "keywords": ["Sunat", "Peru", "PHP", "Consulta", "cURL"],
+    "homepage" : "https://github.com/JossMP/SunatPHP",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "optimize-autoloader": true,
+    "authors": [
+        {
+            "name": "Josue Mazco Puma",
+            "email": "jossmp@gmail.com",
+            "homepage" : "https://geekdev.ml/",
+            "role" : "Developers"
+        }
+    ],
+    "require": {
+        "ext-curl": "*",
+        "lib-curl": "*"
+    },
+    "require-dev": {
+        "php": ">=5.2"
+    },
+    "autoload":{
+		"psr-4":{
+			"Sunat\\":"src/"
+		}
+	}
+}
