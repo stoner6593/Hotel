@@ -62,11 +62,7 @@ $sqlhabitacionprecio = $mysqli->query("select
 	$horamedia = date('H:i', strtotime('08:00:00'));
 	
 
-	//2018-06-03 02:54:51       /    0    /02:54    /   08:00
-	//110.00   60.00  10.00  20.00
-	//
-	//
-	//echo $fecha.'/'.$dia.'/'.$hora.'/'.$horamedia;
+	
 	//Uso de Switch Case
 	//Uso de Switch Case
 	switch ($dia) {
