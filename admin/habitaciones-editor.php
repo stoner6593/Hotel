@@ -34,7 +34,9 @@ $sqlhabitacion = $mysqli->query("select
 	
 	habitacion.costopersonaadicional,
 	habitacion.costohoraadicional,
-  habitacion.precio12
+  habitacion.precio12,
+  habitacion.precio12vs
+
 	
 	from habitacion 
 	where habitacion.idhabitacion = '$xidprimario'");
@@ -162,7 +164,8 @@ $xhFila = $sqlhabitacion->fetch_row();
                         <tr>
                           <td width="202" height="25"><span class="textoContenidoMenor">Precio por Hora Adicional</span></td>
                           <td width="225" height="25"><span class="textoContenidoMenor">Precio por Persona Adicional</span></td>
-                          <td width="225" height="25"><span class="textoContenidoMenor">Precio 12H</span></td>
+                          <td width="225" height="25"><span class="textoContenidoMenor">Precio 12H (Dom-Jue)</span></td>
+                          <td width="225" height="25"><span class="textoContenidoMenor">Precio 12H (Vie-Sab)</span></td>
                           <td height="25" valign="middle">&nbsp;</td>
                           <td height="25" valign="middle">&nbsp;</td>
                         </tr>
@@ -170,6 +173,7 @@ $xhFila = $sqlhabitacion->fetch_row();
                           <td height="25" valign="top"><input name="txtpreciohoraadicional" type="text" class="textbox" id="txtpreciohoraadicional" style="width:85%; text-align:right;" onFocus = "txtpreciohoraadicional.value = EliminarComa(this.value)" onBlur="document.form1.txtpreciohoraadicional.value = formatCurrency(txtpreciohoraadicional.value);" value="<?php echo number_format($xhFila['13'],2);?>"></td>
                           <td height="25" valign="top"><input name="txtpreciopersonaadicional" type="text" class="textbox" id="txtpreciopersonaadicional" style="width:85%; text-align:right;" onFocus = "txtpreciopersonaadicional.value = EliminarComa(this.value)" onBlur="document.form1.txtpreciopersonaadicional.value = formatCurrency(txtpreciopersonaadicional.value);" value="<?php echo number_format($xhFila['14'],2);?>"></td>
                           <td height="25" valign="top"><input name="txtprecio12" type="text" class="textbox" id="txtprecio12" style="width:85%; text-align:right;" onFocus = "txtprecio12.value = EliminarComa(this.value)" onBlur="document.form1.txtprecio12.value = formatCurrency(txtprecio12.value);" value="<?php echo number_format($xhFila['15'],2);?>"></td>
+                           <td height="25" valign="top"><input name="txtprecio12vs" type="text" class="textbox" id="txtprecio12vs" style="width:85%; text-align:right;" onFocus = "txtprecio12vs.value = EliminarComa(this.value)" onBlur="document.form1.txtprecio12vs.value = formatCurrency(txtprecio12vs.value);" value="<?php echo number_format($xhFila['16'],2);?>"></td>
                           <td height="25" valign="middle">&nbsp;</td>
                           <td height="25" valign="middle">&nbsp;</td>
                         </tr>

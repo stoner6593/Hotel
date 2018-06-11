@@ -27,6 +27,7 @@ $txtpreciohorasvs = str_replace(',','',$_POST['txtpreciohorasvs']);
 $txtpreciohoraadicional = str_replace(',','',$_POST['txtpreciohoraadicional']);
 $txtpreciopersonaadicional = str_replace(',','',$_POST['txtpreciopersonaadicional']);
 $txtprecio12=str_replace(',','',$_POST['txtprecio12']);
+$txtprecio12vs=str_replace(',','',$_POST['txtprecio12vs']);
 //*****************************************************
 
 	
@@ -48,7 +49,8 @@ $consulta="update habitacion set
 	
 	costopersonaadicional = '$txtpreciohoraadicional',
 	costohoraadicional = '$txtpreciopersonaadicional',
-	precio12='$txtprecio12'
+	precio12='$txtprecio12',
+	precio12vs='$txtprecio12vs'
 	
 	where idhabitacion = '$xidprimario' ";
 

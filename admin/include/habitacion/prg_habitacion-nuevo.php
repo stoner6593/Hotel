@@ -30,6 +30,7 @@ $txtpreciohorasvs = str_replace(',','',$_POST['txtpreciohorasvs']);
 $txtpreciohoraadicional = str_replace(',','',$_POST['txtpreciohoraadicional']);
 $txtpreciopersonaadicional = str_replace(',','',$_POST['txtpreciopersonaadicional']);
 $txtprecio12=str_replace(',','',$_POST['txtprecio12']);
+$txtprecio12vs=str_replace(',','',$_POST['txtprecio12vs']);
 
 
 //Verificar Numero *******************************************
@@ -64,7 +65,8 @@ $consulta="insert habitacion (
 	
 	costopersonaadicional,
 	costohoraadicional,
-	precio12
+	precio12,
+	precio12vs
 			
 ) values (
 
@@ -86,7 +88,8 @@ $consulta="insert habitacion (
 	
 	'$txtpreciohoraadicional',
 	'$txtpreciopersonaadicional',
-	'$txtprecio12'
+	'$txtprecio12',
+	'$txtprecio12vs'
 	
 	)";
 	
