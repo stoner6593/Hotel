@@ -407,7 +407,7 @@ if($xtxttipoalquiler == 6){
 		$dia = date('w', strtotime($fecha));
 		$hora = date('H:i',strtotime($fecha));
 		$horamedia = date('H:i', strtotime('08:00'));
-		
+		//echo $dia;
 		//Uso de Switch Case
 		switch ($dia) {
 		case 0:
@@ -454,9 +454,22 @@ if($xtxttipoalquiler == 6){
 			}
 			break;
 		case 6:
-			//echo "Tarifa 2 - Viernes";
-			$xpreciodiario = $haFila['6'];
-			$xtotal = $xtotal + $xpreciodiario;
+			if($i == 1){
+				echo $hora ."-". $horamedia;
+				if($hora > $horamedia){
+					//echo "Tarifa 2 - Viernes";
+					$xpreciodiario = $haFila['6'];
+				 	$xtotal = $xtotal + $xpreciodiario;
+				}else{
+					//echo "Tarifa 1 :: Domingo - Jueves ";
+					$xpreciodiario = $haFila['4'];
+					$xtotal = $xtotal + $xpreciodiario;
+				}
+			}else{
+				//echo "Tarifa 2 - Viernes";
+				$xpreciodiario = $haFila['6'];
+				$xtotal = $xtotal + $xpreciodiario;
+			}
 			break;
 		}
 		/*
@@ -507,7 +520,7 @@ if($xtxttipoalquiler == 6){
 		}
 		$mysqli->close();	
 		$_SESSION['msgerror'] = $Men;
-		//header("Location: ../../alquilar.php?idhabitacion=$xtxtidhabitacion&nrohabitacion=$xtxthrohabitacion&idtipohab=$xtipohabitacion&desdeactualizando=si"); 
+		header("Location: ../../alquilar.php?idhabitacion=$xtxtidhabitacion&nrohabitacion=$xtxthrohabitacion&idtipohab=$xtipohabitacion&desdeactualizando=si"); 
 		exit; 
 	
 }

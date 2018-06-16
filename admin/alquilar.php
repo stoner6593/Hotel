@@ -44,7 +44,8 @@ $sqlhabitacionprecio = $mysqli->query("select
 		idalquiler,
 		ubicacion,
 		costoingresoanticipado,
-		precio12
+		precio12,
+		precio12vs
 		
 		from habitacion where idhabitacion = $xidhabitacion");
 		$haFila = $sqlhabitacionprecio->fetch_row();
@@ -73,15 +74,17 @@ $sqlhabitacionprecio = $mysqli->query("select
 			$xpreciohora = $haFila['5'];
 			$xpreciohoraadicional = $haFila['10'];
 			$xpreciohuespedadicional = $haFila['11'];
+			$xpreciohora12=$haFila['18'];
 		}else{
 			//echo "Tarifa 2 - Domingo";
 			 $xpreciodiario = $haFila['6']; //$haFila['6']
 			 $xpreciohora = $haFila['7'];
 			 $xpreciohoraadicional = $haFila['10'];
 			 $xpreciohuespedadicional = $haFila['11'];
+			 $xpreciohora12=$haFila['17'];
 		};
 		//Adicional 12H
-		$xpreciohora12=$haFila['17'];
+		
         break;
 	case 1:
 	case 2:
@@ -117,7 +120,24 @@ $sqlhabitacionprecio = $mysqli->query("select
 		$xpreciohora = $haFila['7'];
 		$xpreciohoraadicional = $haFila['10'];
 		$xpreciohuespedadicional = $haFila['11'];
-		$xpreciohora12=$haFila['17'];
+		
+		//Agregado para 12 horas V-S
+		if($hora > $horamedia){
+			//echo "Tarifa 2 - Viernes";
+			$xpreciodiario = $haFila['6'];
+			$xpreciohora = $haFila['7'];
+			$xpreciohoraadicional = $haFila['10'];
+			$xpreciohuespedadicional = $haFila['11'];
+			$xpreciohora12=$haFila['17'];
+		}else{
+			//echo "Tarifa 1 - Viernes";
+			$xpreciodiario = $haFila['4'];
+			$xpreciohora = $haFila['5'];
+			$xpreciohoraadicional = $haFila['10'];
+			$xpreciohuespedadicional = $haFila['11'];
+			$xpreciohora12=$haFila['17'];
+		};
+		
 		break;
 	}
 	//Uso de Switch Case
