@@ -36,10 +36,10 @@ $consulta="update alquilerhabitacion_detalle set
 	idturno = '$xidturno',
 	idusuario = '$idusuario'
 	where idalquilerdetalle = '$idalquilerdetalle' and idalquiler = '$xidalquiler'";
-echo $consulta;
 
 if($mysqli->query($consulta)){}
 
+ $xmonto=$xmontoefectivo + $xmontovisa;
 
 $consultaturno = "update ingresosturno set
 		totalhabitacion = totalhabitacion + $xmonto,

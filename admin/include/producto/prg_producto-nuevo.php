@@ -14,6 +14,7 @@ $txtcantidad = $_POST['txtcantidad'];
 $txtcantidadminima = $_POST['txtcantidadminima'];
 $txtprecio = $_POST['txtprecio'];
 $txtprecioventa = $_POST['txtprecioventa'];
+$txtprecioventapersonal = $_POST['txtprecioventapersonal'];
 $txtdescripcion = mayuscula($_POST['txtdescripcion']);
 $xestado = 1;
 
@@ -33,7 +34,8 @@ $consulta="insert producto (
 	precio,
 	precioventa,
 	descripcion,
-	estado
+	estado,
+	preciopersonal
 		
 ) values (
 
@@ -45,7 +47,8 @@ $consulta="insert producto (
 	'$txtprecio',
 	'$txtprecioventa',
 	'$txtdescripcion',
-	'$xestado'
+	'$xestado',
+	'$txtprecioventapersonal'
 		
 	)";
 	

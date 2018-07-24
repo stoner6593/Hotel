@@ -31,7 +31,8 @@ $sqlturno = $mysqli->query("select
 	idusuario,
 	estadoturno,
 	fechaapertura,
-	fechacierre
+	fechacierre,
+  totaldescuento
 	
 	from ingresosturno where idturno = '$xidturno'	");
 
@@ -176,7 +177,7 @@ $sqlgastos = $mysqli->query("select
                         </tr>
                       <tr>
                         <td height="25" bgcolor="#FFFFFF"><strong><span class="textoContenido">Total General</span></strong></td>
-                        <td bgcolor="#FFFFFF"><span class="textoContenido">S/ <?php echo number_format($xhabitacion+$xproducto,2);?></span></td>
+                        <td bgcolor="#FFFFFF"><span class="textoContenido">S/ <?php echo number_format(($xhabitacion+$xproducto) - $hFila[10] ,2);?></span></td>
                         </tr>
                       <tr>
                         <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
@@ -188,7 +189,7 @@ $sqlgastos = $mysqli->query("select
                         </tr>
                       <tr>
                         <td height="25" bgcolor="#FFFFFF"><span class="textoContenido">Total Efectivo</span></td>
-                        <td bgcolor="#FFFFFF"><span class="textoContenido">S/ <?php echo number_format($xefectivo,2);?></span></td>
+                        <td bgcolor="#FFFFFF"><span class="textoContenido">S/ <?php echo number_format($xefectivo - $hFila[10],2);?></span></td>
                         </tr>
                       </tbody>
                     </table></td>
@@ -215,11 +216,32 @@ $sqlgastos = $mysqli->query("select
                         <td bgcolor="#FFFFFF">&nbsp;</td>
                       </tr>
                       <tr>
-                        <td height="25" colspan="2" bgcolor="#FFFFFF"><span class="textoContenido"><strong>TOTAL EFECTIVO (INGRESO-GASTO): </strong></span></td>
+                        <td height="25" colspan="2" bgcolor="#FFFFFF"><span class="textoContenido"><strong>TOTAL EFECTIVO (INGRESO-GASTO-DESCUENTOS): </strong></span></td>
                       </tr>
                       <tr>
-                        <td height="25" colspan="2" bgcolor="#FFFFFF"><span class="textoContenido"><strong>S/ <?php echo number_format($xefectivo-$xsumaegreso,2);?></strong></span> </td>
+                        <td height="25" colspan="2" bgcolor="#FFFFFF"><span class="textoContenido"><strong>S/ <?php echo number_format($xefectivo-$xsumaegreso - $hFila[10],2);?></strong></span> </td>
                       </tr>
+                      </tbody>
+                    </table></td>
+                    <td width="638" height="25" align="left" valign="top"><table width="53%" border="0" align="left" cellpadding="5" cellspacing="1">
+                    <tbody>
+                      <tr>
+                        <td height="35" colspan="2" align="center" bgcolor="#FFFFFF" class="textoContenido"><strong>Total descuentos</strong></td>
+                        </tr>
+                      <tr>
+                         <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
+                        <td bgcolor="#FFFFFF">&nbsp;</td>
+                        </tr>
+                      <tr>
+                         <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
+                        <td bgcolor="#FFFFFF">&nbsp;</td>
+                        </tr>
+                   
+                      <tr>
+                         <td height="25" bgcolor="#FFFFFF"><strong><span class="textoContenido">Total Egresos</span></strong></td>
+                        <td bgcolor="#FFFFFF"><span class="textoContenido">S/ <?php echo number_format($hFila[10],2);?></span></td>
+                      </tr>
+                     
                       </tbody>
                     </table></td>
                 </tr>

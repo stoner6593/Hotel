@@ -76,7 +76,10 @@
 			
 			alquilerhabitacion.comentarios,
 			alquilerhabitacion.nroorden,
-			alquilerhabitacion.fecharegistro
+			alquilerhabitacion.fechafin,
+			alquilerhabitacion.totalefectivo,
+			alquilerhabitacion.totalvisa,
+			alquilerhabitacion.descuento
 			
 			from alquilerhabitacion inner join huesped on huesped.idhuesped = alquilerhabitacion.idhuesped
 			where alquilerhabitacion.idalquiler = '$this->idalquiler' 
@@ -151,11 +154,11 @@
 				idusuario
 				
 				from alquilerhabitacion_detalle 
-				where idalquiler = '$this->idalquiler'  order by idalquilerdetalle asc
+				where idalquiler = '$this->idalquiler'   and estadopago!=2 order by idalquilerdetalle asc
 				");
 			$descripcion="";
 			$items=array();
-			$globalIGV=0; $globalTotalVenta=0; $globalGrabadas=0; 
+			$globalIGV=0; $globalTotalVenta=0; $globalGrabadas=0;$Descuento=0; 
 			while ($tmpFila = $sqldetalle->fetch_row()){ $num++; 
 
 			
@@ -215,7 +218,7 @@
 			while($vFila = $sqlventa->fetch_row()){
 
 				$pu2=number_format($vFila[6] / 1.18,2);								
-				$t2=($vFila[6] * $vFila[5]);
+				$t2=number_format($vFila[6] * $vFila[5],2);
 
 				$st2=number_format($t2 / (1.18 ),2);
 				$igv2=number_format($t2 - $st2,2);
@@ -252,6 +255,9 @@
 
 			}
 
+			//Descuento Global
+			$Descuento= $xaFila[16];
+			
 			//CORRELATIVO PARA LOS DOCUMENTOS
 
 			$correlativo=$link->query("SELECT * FROM series WHERE codsunat='$this->tipo_documento' and estado=1")->fetch_row();
@@ -283,10 +289,10 @@
 			$this->setGratuitas(number_format(0.00,2));//Venta Gratuitas
 			$this->setInafectas(number_format(0.00,2));//Venta Inafectas
 			$this->setExoneradas(number_format(0.00,2));//Venta Exoneradas
-			$this->setDescuentoGlobal(number_format(0.00,2));//DescuentoGlobal
+			$this->setDescuentoGlobal(number_format($Descuento,2));//DescuentoGlobal
 			$this->setMontoPercepcion(number_format(0.00,2));//MontoPercepcion
 			$this->setTipoOperacion("01");//TipoOperacion 01 Venta Interna
-			$MontoLetras=num_to_letras($globalTotalVenta,"PEN");
+			$MontoLetras=num_to_letras(($globalTotalVenta - $Descuento),"PEN");
 			$this->setMontoEnLetras($MontoLetras);//Total Venta Letras
 			
 			//General XML	
@@ -314,10 +320,17 @@
 	        $dato['TotGratuitas']=0.00;
 	        $dato['TotInafectas']=0.00;
 	        $dato['TotExoneradas']=0.00;
-	        $dato['DescuentoGlobal']=0.00;
+	        $dato['DescuentoGlobal']=$Descuento;
 	        $dato['Moneda']='PEN'; 
 	        $dato['tipo_documento']=trim($correlativo[1]); 
 	        $dato['fecharegistro']=$date->format('Y-m-d');
+
+	        if($xaFila['14'] > 0){ 
+	        	$dato['formapago']="Efectivo";
+	        }elseif ($xaFila['15'] > 0) {
+	        	$dato['formapago']="Visa";
+	        }
+	        
 
 			$arrayFirmado=array('NomDocXML'=>$this->getId(),
 				'TipoDocumento'=>$this->InvoiceTypeCode,
@@ -631,7 +644,7 @@
 			$zipEnviar=(file_get_contents($cargaZip));
 
 		
-
+			$nombre_archivo = utf8_decode($array['Encabezado']['Emisor']['RUCEmisor'].'-'.$corre);
 			$Respuesta=$this->enviar_sunat($zipEnviar,$nombreZip,$nombre_archivo);	
 
 			$res=json_decode($Respuesta,TRUE);
@@ -643,7 +656,7 @@
 					$codigoRespuesta=$res['success']['codRespuesta'];
 					$msgRespuesta=$res['success']['Description'];
 					foreach ($datos as $key) {
-						$this->ActualizaResumenDocumentos($key['id']);
+						$this->ActualizaResumenDocumentos($key['id'],$codigoRespuesta);
 					}
 					
 																	
@@ -687,10 +700,10 @@
 				values($numeracion[0],'$numeracion[4]','$codigoRespuesta','$msgRespuesta','$nombreZip','$nombre_archivo','$corre',NOW())");
 		}
 		//Actualizar documentos enviados por resumen
-		function ActualizaResumenDocumentos($id){
+		function ActualizaResumenDocumentos($id,$codigoRespuesta=""){
 			$db = new conexion();
 			$link = $db->conexion();
-			return $link->query("UPDATE alquilerhabitacion SET enviado ='2',mensaje_respuesta='Documento enviado por resumen diario'WHERE idalquiler ='$id'");
+			return $link->query("UPDATE alquilerhabitacion SET enviado ='2',mensaje_respuesta='Documento enviado por resumen diario',ticket='$codigoRespuesta' WHERE idalquiler ='$id'");
 		}
 		//Eniar a SUNAT
 		function enviar_sunat($zipEnviar,$nombreZip,$nombre_archivo){
@@ -702,7 +715,6 @@
 			$params=array('user'=>'20545756022MODDATOS',
 				'pass'=>'moddatos');
 
-			
 		
 			try {
 
@@ -981,8 +993,7 @@
 	        $pdf->SetCreator(PDF_CREATOR);
 	        $pdf->SetAuthor('Erwin Torres León');
 	        $pdf->SetTitle($nombre_archivo);
-	        //$pdf->SetSubject('Tutorial TCPDF');
-	        //$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+	        
 	       
 	       switch ($Datos['tipo_documento'])
 		       {
@@ -1032,35 +1043,39 @@
 			$pdf->Ln(7);
 			$pdf->SetXY(2,28);
 			$pdf->Cell(17, 48, "Cliente:",0,0,'L');
-			$pdf->SetFont('Helvetica','',8);
+			$pdf->SetFont('Helvetica','',7);
 			$pdf->SetXY(20,28);
-			$pdf->Cell(17, 48, $arr['Encabezado']['Receptor']['RznSoc'],0,0,'L');
-			$pdf->Ln(5);
+			//$pdf->Cell(17, 48, $arr['Encabezado']['Receptor']['RznSoc'],0,0,'L');
+			$pdf->MultiCell(70,8,$arr['Encabezado']['Receptor']['RznSoc'],0,'L',FALSE,1,20,51); 
+			$pdf->Ln(6);
 			$pdf->SetFont('Helvetica','B',8);
-			$pdf->SetXY(2,32);
+			$pdf->SetXY(2,35);
 			$pdf->Cell(17, 48, "Dirección:",0,0,'L'); 
-			$pdf->SetXY(20,32);
-			$pdf->SetFont('Helvetica','',8);
-			$pdf->Cell(190, 48, $arr['Encabezado']['Receptor']['Direccion'],0,'L'); 
+			$pdf->SetXY(20,35);
+			$pdf->SetFont('Helvetica','',7);
+			//$y = $pdf->GetY();
+			//$pdf->Cell(10, 48, $arr['Encabezado']['Receptor']['Direccion'],0,'L'); 
+			
+			$pdf->MultiCell(70,8,$arr['Encabezado']['Receptor']['Direccion'],0,'L',FALSE,1,20,57); 
 			$pdf->SetFont('Helvetica','B',8); 
-			$pdf->SetXY(2,36);  
-			$pdf->Cell(30, 48, "Fecha de Emisión:",0,0,'L');
-			$pdf->SetFont('Helvetica','',8);
-			$pdf->SetXY(30,36);
-			$pdf->Cell(30, 48, $Datos['fecharegistro'],0,0,'L'); 
-			$pdf->SetFont('Helvetica','B',8);
-			$pdf->SetXY(2,40);  
-			$pdf->Cell(30, 48, "Moneda:",0,0,'L');
+			$pdf->SetXY(2,40); 
+			$pdf->Cell(30, 48, "Fecha de Emisión:"); //,FALSE,1,2,$pdf->GetY()
 			$pdf->SetFont('Helvetica','',8);
 			$pdf->SetXY(30,40);
+			$pdf->Cell(30, 48, $Datos['fecharegistro'],0,0,'L'); 
+			$pdf->SetFont('Helvetica','B',8);
+			$pdf->SetXY(2,44);  
+			$pdf->Cell(30, 48, "Moneda:",0,0,'L');
+			$pdf->SetFont('Helvetica','',8);
+			$pdf->SetXY(30,44);
 			$pdf->Cell(30, 48, 'Soles',0,0,'L'); 
 
 			$pdf->SetFont('Helvetica','B',8);
-			$pdf->SetXY(2,44);  
+			$pdf->SetXY(2,48);  
 			$pdf->Cell(30, 48, "Nº Habitación:",0,0,'L');
 			$pdf->SetFont('Helvetica','',8);
 			$pdf->SetXY(30,44);
-			$pdf->Cell(30, 48, $NHabitacion,0,0,'L'); 
+			$pdf->Cell(30, 56, $NHabitacion,0,0,'L'); 
 
 
 			$pdf->Ln(4);
@@ -1070,15 +1085,11 @@
 		    // Anchuras de las columnas
 		    //$w = array(10, 20, 16, 95,18,22);
 		    $w = array(8, 50);
-		    // Títulos de las columnas
-			//$header = array('Cod.', 'Uni. Medida', 'Cantidad', 'Descripción','Precio','V. Venta');
+		    // Títulos de las columnas		
 			$pdf->SetFont('Helvetica','B',8);
 			$header = array('Cod.', 'Descripción');
-			$pdf->SetXY(2,69); 
-			//$html ='<hr>';
-			//$pdf->writeHTML($html, true, false, true, false, '');
-			//$pdf->SetDash(1,1);
-			//$pdf->Line(2,67,320,67);
+			$pdf->SetXY(2,75); 
+			
 		    // Cabeceras
 		    for($i=0;$i<count($header);$i++)		    	
 		    	$pdf->Cell($w[$i],7,$header[$i],0,0,'L',0);
@@ -1109,7 +1120,7 @@
 		        $pdf->Ln();
 		        
 		        $pdf->SetFont('Helvetica','B',7);
-		        $pdf->Cell(60,1,$CodMoneda.' '.number_format(round($row['pro_total']),2),0,0,'R');       
+		        $pdf->Cell(60,1,$CodMoneda.' '.number_format(round($row['pro_total'],2),2),0,0,'R');       
 		        $pdf->Ln();
 		        $i++;
 		       $pdf->SetFont('Helvetica','',7);
@@ -1123,11 +1134,15 @@
 
 
 			//$pdf->Ln();
-			//$pdf->Cell(65,5,'SON: '.$MontoLetras,0,0,'R');
-			//$pdf->SetFont('Helvetica','',8);
-			//$pdf->Cell(50,5,"SUB TOTAL: ".$CodMoneda,0,0,'R');
-			//$pdf->SetFont('Helvetica','B',8);
-			//$pdf->Cell(10,5,number_format(($Datos['TotGravada']),2),0,0,'R');
+			
+			//VALIDACION PARA EL DESCUENTO GLOBAL
+			
+			if($Datos['DescuentoGlobal']>0){
+		        $Datos['TotVenta']=number_format($Datos['TotVenta'] - $Datos['DescuentoGlobal'],2);
+		        $Datos['TotGravada']=$Datos['TotVenta'] / 1.18;
+		        $Datos['TotIgv']=$Datos['TotVenta'] - $Datos['TotGravada'];
+		    }
+
 			$pdf->SetX(0);
 			$pdf->Cell(100,5,"------------------------------------------------------------------------------------------------",0,0,'L');
 			$pdf->Ln();
@@ -1155,6 +1170,11 @@
 			$pdf->Cell(17,5,"IGV: ".$CodMoneda,0,0,'R');
 			$pdf->SetFont('Helvetica','B',7);
 			$pdf->Cell(48,5,number_format($Datos['TotIgv'],2),0,0,'R');
+			$pdf->Ln();
+			$pdf->SetFont('Helvetica','',7);
+			$pdf->Cell(17,5,"DESCUENTO: ".$CodMoneda,0,0,'R');
+			$pdf->SetFont('Helvetica','B',7);
+			$pdf->Cell(48,5,number_format($Datos['DescuentoGlobal'],2),0,0,'R');
 			$pdf->Ln();
 			$pdf->SetFont('Helvetica','',7);
 			$pdf->Cell(17,5,"TOTAL: ".$CodMoneda,0,0,'R');
@@ -1186,7 +1206,9 @@
 			$alto=$pdf->GetY();
 			$pdf->SetX(20);
 			$pdf->Cell(2,5,$pdf->write2DBarcode($datosAdicionales_CDB, 'PDF417', 10, $alto, 135, 20, $style, 'N'),0,'J');
-			
+			$pdf->Ln();
+			$pdf->SetX(26);
+			$pdf->Cell(2,5,'Forma de Pago: '.$Datos['formapago'],0,'J');
 			//$pdf->Line(10,10,200,10);
 			
 			//$nombre_archivo='prueba.pdf';

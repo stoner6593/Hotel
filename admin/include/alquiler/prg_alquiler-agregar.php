@@ -264,4 +264,122 @@ if ($xtxttipoalquiler == 3){
 		exit; 
 }
 
+//1. ALQUILER POR HORAS - ACTUALIZACION 12 HORAS*********************************************************************************
+if($xtxttipoalquiler == 6){
+	$xcostohoras = $_POST['txtprecioporhora12'];
+	$xnrohoras = 6;
+	
+	//FECHA SACAR DE ULTIMA FECHA
+	$sqlconsulta = $mysqli->query("select idalquiler, fechafin from alquilerhabitacion where idalquiler = '$xidalquiler'");
+	$aFila = $sqlconsulta->fetch_row();
+	$xfechadesde = $aFila['1'];
+	
+	$xfechahasta = sumarhoraafecha(6,$xfechadesde); //Fecha hasta adicionando 6 horas
+	$xtotal = $xcostohoras;
+	
+	
+	$consultadet = "insert alquilerhabitacion_detalle (
+		idalquilerdetalle,
+		idalquiler,
+		tipoalquiler,
+		fechadesde,
+		fechahasta,
+		nrohoras,
+		costohora,
+		preciounitario,
+		cantidad,
+		total
+		
+		)values(
+		
+		'$xidprimario',
+		'$xidalquiler',
+		'$xtxttipoalquiler',
+		'$xfechadesde',
+		'$xfechahasta',
+		'$xnrohoras',
+		'$xcostohoras',
+		'$xcostohoras',
+		'$xnrohoras',
+		'$xtotal' 	
+		)";
+		
+		if($mysqli->query($consultadet)){
+			//$Men = "Grabado";
+			
+			// Actualizar Fecha Fin 		
+			$consultaact="update alquilerhabitacion set
+			fechafin = '$xfechahasta'
+			where idalquiler = '$xidalquiler'";
+			if($mysqli->query($consultaact)){}
+			
+			//echo "Hola";
+		}
+
+		$mysqli->close();	
+		//$_SESSION['msgerror'] = $Men; 
+		header("Location: ../../alquilar-detalle.php?idhabitacion=$xidhabitacion&idalquiler=$xidalquiler"); 
+		exit; 
+}
+
+
+//1. ALQUILER POR HORAS - ACTUALIZACION 1 DIA*********************************************************************************
+if($xtxttipoalquiler == 7){
+	$xcostohoras = $_POST['txtpreciodia12'];
+	$xnrohoras = 12;
+	
+	//FECHA SACAR DE ULTIMA FECHA
+	$sqlconsulta = $mysqli->query("select idalquiler, fechafin from alquilerhabitacion where idalquiler = '$xidalquiler'");
+	$aFila = $sqlconsulta->fetch_row();
+	$xfechadesde = $aFila['1'];
+	
+	$xfechahasta = sumarhoraafecha(12,$xfechadesde); //Fecha hasta adicionando 6 horas
+	$xtotal = $xcostohoras;
+	
+	
+	$consultadet = "insert alquilerhabitacion_detalle (
+		idalquilerdetalle,
+		idalquiler,
+		tipoalquiler,
+		fechadesde,
+		fechahasta,
+		nrohoras,
+		costohora,
+		preciounitario,
+		cantidad,
+		total
+		
+		)values(
+		
+		'$xidprimario',
+		'$xidalquiler',
+		'$xtxttipoalquiler',
+		'$xfechadesde',
+		'$xfechahasta',
+		'$xnrohoras',
+		'$xcostohoras',
+		'$xcostohoras',
+		'$xnrohoras',
+		'$xtotal' 	
+		)";
+		
+		if($mysqli->query($consultadet)){
+			//$Men = "Grabado";
+			
+			// Actualizar Fecha Fin 		
+			$consultaact="update alquilerhabitacion set
+			fechafin = '$xfechahasta'
+			where idalquiler = '$xidalquiler'";
+			if($mysqli->query($consultaact)){}
+			
+			//echo "Hola";
+		}
+
+		$mysqli->close();	
+		//$_SESSION['msgerror'] = $Men; 
+		header("Location: ../../alquilar-detalle.php?idhabitacion=$xidhabitacion&idalquiler=$xidalquiler"); 
+		exit; 
+}
+
+
 ?>

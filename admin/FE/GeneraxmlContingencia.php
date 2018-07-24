@@ -113,7 +113,8 @@
 			
 			alquilerhabitacion.comentarios,
 			alquilerhabitacion.nroorden,
-			alquilerhabitacion.fecharegistro
+			alquilerhabitacion.fecharegistro,
+			alquilerhabitacion.descuento
 			
 			from alquilerhabitacion inner join huesped on huesped.idhuesped = alquilerhabitacion.idhuesped
 			where alquilerhabitacion.idalquiler = '$this->idalquiler' 
@@ -188,11 +189,11 @@
 				idusuario
 				
 				from alquilerhabitacion_detalle 
-				where idalquiler = '$this->idalquiler'  order by idalquilerdetalle asc
+				where idalquiler = '$this->idalquiler' and estadopago !=2   order by idalquilerdetalle asc
 				");
 			$descripcion="";
 			$items=array();
-			$globalIGV=0; $globalTotalVenta=0; $globalGrabadas=0; 
+			$globalIGV=0; $globalTotalVenta=0; $globalGrabadas=0; $Descuento=0;
 			while ($tmpFila = $sqldetalle->fetch_row()){ $num++; 
 
 			
@@ -286,6 +287,8 @@
 
 			}
 
+			//Descuento Global
+			$Descuento= $xaFila[16];
 			//CORRELATIVO PARA LOS DOCUMENTOS
 
 			$correlativo=$link->query("SELECT * FROM series WHERE codsunat='$this->tipo_documento' and estado=1")->fetch_row();
@@ -312,7 +315,7 @@
 			$this->setGratuitas(number_format(0.00,2));//Venta Gratuitas
 			$this->setInafectas(number_format(0.00,2));//Venta Inafectas
 			$this->setExoneradas(number_format(0.00,2));//Venta Exoneradas
-			$this->setDescuentoGlobal(number_format(0.00,2));//DescuentoGlobal
+			$this->setDescuentoGlobal(number_format($Descuento,2));//DescuentoGlobal
 			$this->setMontoPercepcion(number_format(0.00,2));//MontoPercepcion
 			$this->setTipoOperacion("01");//TipoOperacion 01 Venta Interna
 			$MontoLetras=num_to_letras($globalTotalVenta,"PEN");
@@ -879,6 +882,11 @@
 			$pdf->Cell(17,5,"IGV: ".$CodMoneda,0,0,'R');
 			$pdf->SetFont('Helvetica','B',7);
 			$pdf->Cell(48,5,number_format($Datos['TotIgv'],2),0,0,'R');
+			$pdf->Ln();
+			$pdf->SetFont('Helvetica','',7);
+			$pdf->Cell(17,5,"DESCUENTO: ".$CodMoneda,0,0,'R');
+			$pdf->SetFont('Helvetica','B',7);
+			$pdf->Cell(48,5,number_format($Datos['DescuentoGlobal'],2),0,0,'R');
 			$pdf->Ln();
 			$pdf->SetFont('Helvetica','',7);
 			$pdf->Cell(17,5,"TOTAL: ".$CodMoneda,0,0,'R');

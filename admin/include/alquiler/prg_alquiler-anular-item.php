@@ -15,6 +15,23 @@ $consulta="update alquilerhabitacion_detalle set
 
 if($mysqli->query($consulta)){}
 
+
+
+//Restaura fecha salida
+$ultimafecha=$mysqli->query("SELECT fechahasta FROM alquilerhabitacion_detalle where idalquiler='$xidalquiler' 
+AND idalquilerdetalle= (SELECT MAX(det.idalquilerdetalle) FROM alquilerhabitacion_detalle det where det.idalquiler='$xidalquiler' and det.estadopago=1 LIMIT 1 ) AND estadopago=1");
+
+if ($ultimafecha) {
+	$dato=$ultimafecha->fetch_row();
+	
+	// Actualizar Fecha Fin 		
+	$consultaact="update alquilerhabitacion set
+	fechafin = '$dato[0]'
+	where idalquiler = '$xidalquiler'";
+	if($mysqli->query($consultaact)){}
+}
+
+
 $mysqli->close();	
 $_SESSION['msgerror'] = $Men;
 header("Location: ../../alquilar-detalle.php?idhabitacion=$xidhabitacion&idalquiler=$xidalquiler");

@@ -70,6 +70,7 @@
     <li><a  href="sunat.php"><i class="fa fa-user"></i>  &nbsp;&nbsp;&nbsp; Documentos SUNAT </a></li>
     <li><a  href="listadosunat.php"><i class="fa fa-user"></i>  &nbsp;&nbsp;&nbsp;Listado de documentos </a></li>
     <li><a  href="resumendiario.php"><i class="fa fa-user"></i>  &nbsp;&nbsp;&nbsp;Resumen diario </a></li>
+    <li><a  href="listadoresumendiario.php"><i class="fa fa-user"></i>  &nbsp;&nbsp;&nbsp;Listado resumen diario </a></li>
     <?php } ?>
     
     

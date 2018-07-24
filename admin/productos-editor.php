@@ -17,7 +17,8 @@ $sqlproducto = $mysqli->query("select
 	precio,
 	precioventa,
 	descripcion,
-	estado
+	estado,
+	preciopersonal
 	
 	from producto 
 	where idproducto = '$xidprimario'");
@@ -71,11 +72,13 @@ $xpFila = $sqlproducto->fetch_row();
                         <tr>
                           <td width="224" height="30"><span class="textoContenido">Cantidad / Stock</span></td>
                           <td width="195" height="30"><span class="textoContenido">Precio de Venta</span></td>
+                          <td width="195" height="30"><span class="textoContenido">Precio Personal</span></td>
                           <td height="30">&nbsp;</td>
                         </tr>
                         <tr>
                           <td height="30"><input name="txtcantidad" type="text" class="textbox"  onKeyPress="return soloNumero(event)" value="<?php echo $xpFila['3'];?>" maxlength="5" <?php if($_SESSION['xyztipo']!=1){echo 'readonly';}?> ></td>
                           <td height="30"><input name="txtprecioventa" type="text" class="textbox" value="<?php echo $xpFila['6'];?>" style="text-align:right;"></td>
+                          <td height="30"><input name="txtprecioventapersonal" type="text" class="textbox" value="<?php echo $xpFila['9'];?>" style="text-align:right;"></td>
                           <td height="30" valign="top">&nbsp;</td>
                         </tr>
                         <tr>

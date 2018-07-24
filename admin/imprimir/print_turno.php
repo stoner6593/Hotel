@@ -8,7 +8,8 @@ $xidturno = $_GET['idturno'];
 
 $sqlusuarioturno = $mysqli->query("select 
 	idturno,
-	idusuario
+	idusuario,
+  totaldescuento
 	from ingresosturno where idturno = '$xidturno'");
 	$xuFila = $sqlusuarioturno->fetch_row();
 	
@@ -220,11 +221,21 @@ $xnumeroalquiler = $sqlnumeroalquiler->num_rows;
     <tr>
       <td height="22" align="center">&nbsp;</td>
     </tr>
-    <tr>
-      <td height="22" align="center"><span class="textoContenido"><strong>Efectivo Turno (Ingreso-Egreso):</strong></span></td>
+     <tr>
+      <td height="22" align="center"><span class="textoContenido"><strong>DESCUENTOS:</strong></span></td>
     </tr>
     <tr>
-      <td height="22" align="center"><span class="textoContenido"><strong>S/ <?php echo number_format($xefectivo-$xsumaegreso,2);?></strong></span></td>
+      <td height="22" align="center"><span class="textoContenido"><strong>S/ <?php echo number_format($xuFila[2],2);?></strong></span></td>
+    </tr>
+
+    <tr>
+      <td height="22" align="center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="22" align="center"><span class="textoContenido"><strong>Efectivo Turno (Ingreso-Egreso-Descuento):</strong></span></td>
+    </tr>
+    <tr>
+      <td height="22" align="center"><span class="textoContenido"><strong>S/ <?php echo number_format($xefectivo-$xsumaegreso - $xuFila[2],2);?></strong></span></td>
     </tr>
     <tr>
       <td height="22" align="center"><span class="textoContenido1">------------------------------------------------</span></td>

@@ -8,10 +8,19 @@
 ============================================
 
 ===========================
-*Agregar 12 horas (domingo - jueves y fin de semana)
-*Upgrade de habitación ( si se tiene de 6 horas poder hacer upgrade a 12 o a día completo pagando la diferencia respeta la hora de ingreso check in pero cambia la hora de salida check out y agrega el monto de la diferencia).
-*Precio venta personal ( hacer una opción más de venta de producto que apunte a una columna nueva que sea precio personal dentro de la tabla de productos ya que al personal se le vende a otro precio los productos si la gaseosa cuesta 5 al personal se le vende a menos)
-* La opción anular habitación no descuenta el  monto anulado en la tabla ingreso diario ya que si se anula debería actualizar el monto porfa corregir eso .
+*Agregar 12 horas (domingo - jueves y fin de semana) (OK)
+
+*Upgrade de habitación ( si se tiene de 6 horas poder hacer upgrade a 12 o a día completo pagando 
+la diferencia respeta la hora de ingreso check in pero cambia la hora de salida check out y agrega el monto de la diferencia). (PENDIENTE)
+
+*Precio venta personal ( hacer una opción más de venta de producto que apunte a una columna nueva que sea
+ precio personal dentro de la tabla de productos ya que al personal se le vende a otro precio los productos 
+si la gaseosa cuesta 5 al personal se le vende a menos) (OK)
+
+* La opción anular habitación no descuenta el  monto anulado en la tabla ingreso diario ya que si se anula debería 
+actualizar el monto porfa corregir eso . (No se puede realizar esta operacion, el monto ingresado debe salir por gasto y especificar el porque de la
+salida del dinero)
+
 * hacer un histórico de los los resúmenes diarios ?? donde figure el envío el ticket y el rango de comprobantes enviados ??
 Comunicación de baja
 Nota de crédito.
@@ -21,8 +30,7 @@ Lo ke pasa es ke el manejo allí es diferente
 Y a veces actuando no hay gente descuentan
 Por ejemplo es 50 y cuando no hay gente pueden dejarle a menos
 Si es por.menls tiempo.
-Y k en la boleta electrónica
-Salga visa o efectivo
-porfa me avisas
-y en el ticket tambien
-porfa
+Y k en la boleta electrónica Salga visa o efectivo (OK)
+
+
+

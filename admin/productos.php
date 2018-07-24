@@ -16,7 +16,8 @@ if($txtdato==""){
 	precio,
 	precioventa,
 	descripcion,
-	estado
+	estado,
+  preciopersonal
 	from producto order by orden asc");
 }else{
 	$sqlproducto = $mysqli->query("select
@@ -28,7 +29,8 @@ if($txtdato==""){
 	precio,
 	precioventa,
 	descripcion,
-	estado
+	estado,
+  preciopersonal
 	
 	from producto 
 	where nombre regexp '$txtdato|$txtdato.'
@@ -102,7 +104,7 @@ if($txtdato==""){
                         <td width="321" height="25" bgcolor="#F4F4F4">Nombre</td>
                         <td width="104" height="25" align="center" bgcolor="#F4F4F4">Cantidad / Stock</td>
                         <td width="109" height="25" align="right" bgcolor="#F4F4F4">Precio  Venta (S/)</td>
-                        <td width="40" bgcolor="#F4F4F4">&nbsp;</td>
+                        <td width="40" bgcolor="#F4F4F4">Precio  Personal (S/)</td>
                         <td width="39" align="center" bgcolor="#F4F4F4">Est</td>
                         <td width="43" align="center" bgcolor="#F4F4F4">Edit</td>
                       </tr>
@@ -118,7 +120,7 @@ if($txtdato==""){
                         <td height="25" bgcolor="#FFFFFF"><?php echo $xpFila['2'];?></td>
                         <td height="25" align="center" bgcolor="#FFFFFF"><?php echo $xpFila['3'];?></td>
                         <td height="25" align="right" bgcolor="#FFFFFF"><?php echo $xpFila['6'];?></td>
-                        <td height="25" bgcolor="#FFFFFF">&nbsp;</td>
+                        <td height="25" bgcolor="#FFFFFF"><?php echo $xpFila['9'];?></td>
                         <td align="center" bgcolor="#FFFFFF"><button type="button" onClick="window.location.href='include/producto/prg_producto-modificaestado.php?xidparaestado=<?php echo $xpFila['0']."&estado=".$xpFila['8']?>';" class="btnestado tooltip" tooltip="Estado" style="border:0px; cursor:pointer; background:#<?php echo colorestado($xpFila['8']); ?>"> <i class="fa fa-angle-up"></i></button></td>
                         <td align="center" bgcolor="#FFFFFF"><button type="button" onclick="window.location.href='productos-editor.php?idprimario=<?php echo $xpFila['0'].'&estado=modifica';?>';" class="btnmodificar tooltip" tooltip="Modificar" style="border:0px; cursor:pointer;"> <i class="fa fa-edit"></i></button></td>
                       </tr>

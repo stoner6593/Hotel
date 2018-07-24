@@ -13,6 +13,7 @@ if(isset($_POST['gender'])){
 
 $xdato = $_POST['txtproducto'] ? $_POST['txtproducto'] : $_POST['txtservicio'];
 $xmando = $_POST['txtmando'];
+$personal = isset($_POST['personal']);
 
 $xidhabitacion = $_GET['idhabitacion'];
 $xidalquiler = $_GET['idalquiler'];
@@ -39,7 +40,7 @@ $sqlservicio = $mysqli->query("select
     //print_r($_POST);
 		$xcantidad = $_POST['txtcantidad'];
 		//Obtener Precio
-		$sqlprecio = $mysqli->query("select idproducto, precioventa from producto where nombre = '$xdato'");
+		$sqlprecio = $mysqli->query("select idproducto, precioventa,preciopersonal from producto where nombre = '$xdato'");
     $sqlprecio2 = $mysqli->query("select idservicios, costo from servicios where descripcion = '$xdato'");
 		$pFila = $sqlprecio->fetch_row(); 
     $pFila2 = $sqlprecio2->fetch_row(); 
@@ -49,8 +50,10 @@ $sqlservicio = $mysqli->query("select
 		
 		$xidproducto = $pFila['0'];
 		$xnombre  = $xdato;
-    if($condicion==1){
+    if($condicion==1 && $personal=='0'){
       $xprecio  = $pFila['1'];
+    } else if($condicion==1 && $personal=='1'){
+      $xprecio  = $pFila['2'];
     }else{
       $xprecio  = $pFila2['1'];
     }
@@ -203,6 +206,7 @@ if($xdesde=="alquiler"){
                           <option id="<?php echo $urow1['idservicios']; ?>" value="<?php echo $urow1['descripcion']; ?>" label="<?php echo 'S/ '.$urow1['costo'];?>"></option>
                         <?php } ?>
                       </datalist>
+                      <input type="checkbox" name="personal" id="personal" title="Precio s&oacute;lo trabajores">
                     </td>
                     <td width="119" height="45" align="center" bgcolor="#969696" > <span class="textoContenidoMenor">Cantidad</span>
                       <input name="txtmando" type="hidden" id="txtmando" value="grabar"></td>

@@ -12,6 +12,7 @@ $txtcantidad = $_POST['txtcantidad'];
 $txtcantidadminima = $_POST['txtcantidadminima'];
 $txtprecio = $_POST['txtprecio'];
 $txtprecioventa = $_POST['txtprecioventa'];
+$txtprecioventapersonal = $_POST['txtprecioventapersonal'];
 $txtdescripcion = mayuscula($_POST['txtdescripcion']);
 //*****************************************************
 
@@ -24,7 +25,8 @@ $consulta="update producto set
 	cantidadminima = '$txtcantidadminima',
 	precio = '$txtprecio',
 	precioventa = '$txtprecioventa',
-	descripcion = '$txtdescripcion'
+	descripcion = '$txtdescripcion',
+	preciopersonal = '$txtprecioventapersonal'
 
 	where idproducto = '$xidprimario'";
 
