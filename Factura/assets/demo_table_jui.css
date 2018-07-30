@@ -1,0 +1,515 @@
+.paging_two_button .ui-button {
+	float: left;
+	cursor: pointer;
+	* cursor: hand;
+}
+
+.paging_full_numbers .ui-button {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+	padding: 2px 4px;
+	margin: 0;
+	cursor: pointer;
+	* cursor: hand;
+	color: #333 !important;
+}
+
+.dataTables_paginate .ui-button {
+	margin-right: -0.1em !important;
+}
+
+.paging_full_numbers {
+	width: 250px !important;
+}
+
+.dataTables_wrapper .ui-toolbar {
+	padding: 2px;
+}
+
+.dataTables_paginate {
+	width: auto;
+}
+
+.dataTables_info {
+	padding-top: 3px;
+}
+
+table.display thead th {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	padding: 3px 0px 3px 10px;
+	cursor: pointer;
+	* cursor: hand;
+}
+
+div.dataTables_wrapper .ui-widget-header {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:10px;
+}
+
+
+/*
+ * Sort arrow icon positioning
+ */
+table.display thead th div.DataTables_sort_wrapper {
+	position: relative;
+	padding-right: 20px;
+
+}
+
+table.display thead th div.DataTables_sort_wrapper span {
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	right: 0;
+}
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Everything below this line is the same as demo_table.css. This file is
+ * required for 'cleanliness' of the markup
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables features
+ */
+
+.dataTables_wrapper {
+	position: relative;
+	clear: both;
+}
+
+.dataTables_processing {
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	width: 250px;
+	margin-left: -145px;
+	border: 1px solid #ddd;
+	text-align: center;
+	color: #999;
+	font-size: 12px;
+	padding: 2px 0;
+	background-color: #FFFFF0;
+
+}
+
+.dataTables_length {
+	width: auto;
+	float: right;
+}
+
+.dataTables_filter {
+	width:auto;
+	float: left;
+	text-align:left;
+}
+
+.dataTables_info {
+	width: 50%;
+	float: left;
+}
+
+.dataTables_paginate {
+	float: right;
+	text-align: right;
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables display
+ */
+table.display {
+	margin: 0 auto;
+	width: 100%;
+	clear: both;
+	border-collapse: collapse;
+}
+
+
+table.display tfoot th {
+	padding: 3px 0px 3px 10px;
+	font-weight: lighter;
+	font-weight: normal;
+}
+
+table.display tr.heading2 td {
+	border-bottom: 1px solid #aaa;
+}
+
+
+table.display td {
+	padding: 3px 10px;
+}
+
+table.display td.center {
+	text-align: center;
+}
+
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables row classes
+ */
+table.display tr.odd.gradeA {
+	background-color: #ddffdd;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+}
+
+table.display tr.even.gradeA {
+	background-color: #eeffee;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+}
+
+
+
+
+table.display tr.odd.gradeA {
+	background-color: #FFFDD9;
+	font-weight:lighter;
+}
+
+table.display tr.even.gradeA {
+	background-color: #FFFFF0;
+	font-weight:lighter;
+}
+
+table.display tr.odd.gradeC {
+	background-color: #ddddff;
+	font-weight:lighter;
+}
+
+table.display tr.even.gradeC {
+	background-color: #eeeeff;
+	font-weight:lighter;
+}
+
+table.display tr.odd.gradeX {
+	background-color: #ffdddd;
+}
+
+table.display tr.even.gradeX {
+	background-color: #ffeeee;
+}
+
+table.display tr.odd.gradeU {
+	background-color: #ddd;
+	font-weight:lighter;
+}
+
+table.display tr.even.gradeU {
+	background-color: #eee;
+}
+
+
+tr.odd {
+	background-color: #FFFDD9;
+	font: 12px Verdana, Geneva, sans-serif;
+	font-weight:lighter;
+}
+
+tr.even {
+	background-color: #FFFFF0;
+	font: 12px Verdana, Geneva, sans-serif;
+	font-weight:lighter;
+}
+
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Misc
+ */
+.dataTables_scroll {
+	clear: both;
+}
+
+.dataTables_scrollBody {
+	-webkit-overflow-scrolling: touch;
+}
+
+ .bottom { /*.top,*/
+	padding: 15px;
+	background-color: #F5F5F5;
+	border: 1px solid #CCCCCC;
+}
+
+ .dataTables_info { /*.top,*/
+	float: none;
+}
+
+.clear {
+	clear: both;
+}
+
+.dataTables_empty {
+	text-align: center;
+}
+
+tfoot input {
+	margin: 0.5em 0;
+	width: 100%;
+	color: #444;
+}
+
+tfoot input.search_init {
+	color: #999;
+}
+
+td.group {
+	background-color: #d1cfd0;
+	border-bottom: 2px solid #A19B9E;
+	border-top: 2px solid #A19B9E;
+}
+
+td.details {
+	background-color: #d1cfd0;
+	border: 2px solid #A19B9E;
+}
+
+
+.example_alt_pagination div.dataTables_info {
+	width: 40%;
+}
+
+.paging_full_numbers a.paginate_button,
+ 	.paging_full_numbers a.paginate_active {
+	border: 1px solid #aaa;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 2px 5px;
+	margin: 0 3px;
+	cursor: pointer;
+	*cursor: hand;
+	color: #333 !important;
+}
+
+.paging_full_numbers a.paginate_button {
+	background-color: #ddd;
+}
+
+.paging_full_numbers a.paginate_button:hover {
+	background-color: #ccc;
+	text-decoration: none !important;
+}
+
+.paging_full_numbers a.paginate_active {
+	background-color: #99B3FF;
+}
+
+table.display tr.even.row_selected td {
+	background-color: #F7BC56;
+}
+
+table.display tr.odd.row_selected td {
+	background-color: #FFCD70;
+}
+
+
+/*
+ * Sorting classes for columns
+ */
+/* For the standard odd/even */
+tr.odd td.sorting_1 {
+	background-color: #F8CE82;
+}
+
+tr.odd td.sorting_2 {
+	background-color: #DADCFF;
+}
+
+tr.odd td.sorting_3 {
+	background-color: #E0E2FF;
+}
+
+tr.even td.sorting_1 {
+	background-color: #F7D9A5;
+}
+
+tr.even td.sorting_2 {
+	background-color: #F2F3FF;
+}
+
+tr.even td.sorting_3 {
+	background-color: #F9F9FF;
+}
+
+
+/* For the Conditional-CSS grading rows */
+/*
+ 	Colour calculations (based off the main row colours)
+  Level 1:
+		dd > c4
+		ee > d5
+	Level 2:
+	  dd > d1
+	  ee > e2
+ */
+tr.odd.gradeA td.sorting_1 {
+	background-color: #FFFAC1;
+}
+
+tr.odd.gradeA td.sorting_2 {
+	background-color: #F7F3C3;
+}
+
+tr.odd.gradeA td.sorting_3 {
+	background-color: #F7F3C3;
+}
+
+tr.even.gradeA td.sorting_1 {
+	background-color: #FFFFDD;
+}
+
+tr.even.gradeA td.sorting_2 {
+	background-color: #e2ffe2;
+}
+
+tr.even.gradeA td.sorting_3 {
+	background-color: #e2ffe2;
+}
+
+tr.odd.gradeC td.sorting_1 {
+	background-color: #c4c4ff;
+}
+
+tr.odd.gradeC td.sorting_2 {
+	background-color: #d1d1ff;
+}
+
+tr.odd.gradeC td.sorting_3 {
+	background-color: #d1d1ff;
+}
+
+tr.even.gradeC td.sorting_1 {
+	background-color: #d5d5ff;
+}
+
+tr.even.gradeC td.sorting_2 {
+	background-color: #e2e2ff;
+}
+
+tr.even.gradeC td.sorting_3 {
+	background-color: #e2e2ff;
+}
+
+tr.odd.gradeX td.sorting_1 {
+	background-color: #ffc4c4;
+}
+
+tr.odd.gradeX td.sorting_2 {
+	background-color: #ffd1d1;
+}
+
+tr.odd.gradeX td.sorting_3 {
+	background-color: #ffd1d1;
+}
+
+tr.even.gradeX td.sorting_1 {
+	background-color: #ffd5d5;
+}
+
+tr.even.gradeX td.sorting_2 {
+	background-color: #ffe2e2;
+}
+
+tr.even.gradeX td.sorting_3 {
+	background-color: #ffe2e2;
+}
+
+tr.odd.gradeU td.sorting_1 {
+	background-color: #c4c4c4;
+}
+
+tr.odd.gradeU td.sorting_2 {
+	background-color: #d1d1d1;
+}
+
+tr.odd.gradeU td.sorting_3 {
+	background-color: #d1d1d1;
+}
+
+tr.even.gradeU td.sorting_1 {
+	background-color: #d5d5d5;
+}
+
+tr.even.gradeU td.sorting_2 {
+	background-color: #e2e2e2;
+}
+
+tr.even.gradeU td.sorting_3 {
+	background-color: #e2e2e2;
+}
+
+
+/*
+ * Row highlighting example
+ */
+#example tbody tr.even:hover, #example tbody tr.even td.highlighted {
+	background-color: #F7D499;
+	cursor:pointer;
+}
+
+.#example tbody tr.odd:hover, #example tbody tr.odd td.highlighted {
+	background-color: #E6FF99;
+	cursor:pointer;
+}
+
+#example tr.even:hover {
+	background-color: #F7D499;
+	cursor:pointer;
+}
+#example tbody{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+	font-weight:lighter;
+}
+
+.ex_highlight_row #example tr.even:hover td.sorting_1 {
+	background-color: #F4C777;
+	cursor:pointer;
+}
+
+ #example tr.even:hover td.sorting_2 {
+	background-color: #E7FF9E;
+	cursor:pointer;
+}
+
+#example tr.even:hover td.sorting_3 {
+	background-color: #E2FF89;
+	cursor:pointer;
+}
+
+
+#example tr.odd:hover {
+	background-color: #FFD88C;
+	cursor:pointer;
+}
+
+ #example tr.odd:hover td.sorting_1 {
+	background-color: #F7BC56;
+	cursor:pointer;
+}
+
+#example tr.odd:hover td.sorting_2 {
+	background-color: #E0FF84;
+	cursor:pointer;
+}
+
+#example tr.odd:hover td.sorting_3 {
+	background-color: #DBFF70;
+	cursor:pointer;
+}

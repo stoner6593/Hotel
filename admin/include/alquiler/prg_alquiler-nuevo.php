@@ -71,7 +71,8 @@
 		idturno,
 		idusuario,
 		nroorden,
-		descuento
+		descuento,
+		estadoalquiler
 		
 		) values (
 		
@@ -86,7 +87,8 @@
 		'$xidturno',
 		'$idusuario',
 		'$txtnumero',
-		'$descuento'
+		'$descuento',
+		'1'
 		
 		)";
 		

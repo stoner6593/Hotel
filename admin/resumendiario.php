@@ -49,7 +49,7 @@ $sqlalquiler = $mysqli->query("select
       alquilerhabitacion.descuento
       
       from alquilerhabitacion inner join huesped on huesped.idhuesped = alquilerhabitacion.idhuesped
-      where alquilerhabitacion.codigo_respuesta = 0 and alquilerhabitacion.iddocumento=1 and alquilerhabitacion.enviado=1 ".$concatena." order by  alquilerhabitacion.fecharegistro DESC
+      where alquilerhabitacion.codigo_respuesta = 0 and alquilerhabitacion.estadoalquiler=1 and alquilerhabitacion.iddocumento=1 and alquilerhabitacion.enviado=1 ".$concatena." order by  alquilerhabitacion.fecharegistro DESC
       ");   
 
 

@@ -474,7 +474,7 @@
 			alquilerhabitacion.documento
 			
 			from alquilerhabitacion inner join huesped on huesped.idhuesped = alquilerhabitacion.idhuesped
-			where alquilerhabitacion.enviado = 1 and alquilerhabitacion.iddocumento=1 and alquilerhabitacion.codigo_respuesta = 0 ".$concatena
+			where alquilerhabitacion.enviado = 1 and alquilerhabitacion.estadoalquiler=1 and alquilerhabitacion.iddocumento=1 and alquilerhabitacion.codigo_respuesta = 0 ".$concatena
 			);		
 			
 			

@@ -1,0 +1,20 @@
+﻿<IfModule mod_rewrite.c>
+    RewriteEngine On 
+    RewriteCond %{REQUEST_FILENAME} !-f 
+    RewriteCond %{REQUEST_FILENAME} !-d 
+    RewriteRule ^(.*)$ /webhotelcentral/Factura/index.php/$1 [L] 
+</IfModule>
+<IfModule !mod_rewrite.c>
+    #ErrorDocument 404 /stoner93/index.php 
+    
+
+</IfModule>
+Options All -Indexes
+SetEnvIfNoCase user-Agent ^FrontPage [NC,OR]
+SetEnvIfNoCase user-Agent ^Java.* [NC,OR]
+SetEnvIfNoCase user-Agent ^Microsoft.URL [NC,OR]
+SetEnvIfNoCase user-Agent ^MSFrontPage [NC,OR]
+SetEnvIfNoCase user-Agent ^Offline.Explorer [NC,OR]
+SetEnvIfNoCase user-Agent ^[Ww]eb[Bb]andit [NC,OR]
+SetEnvIfNoCase user-Agent ^Zeus [NC]
+ 

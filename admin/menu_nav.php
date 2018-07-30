@@ -71,8 +71,15 @@
     <li><a  href="listadosunat.php"><i class="fa fa-user"></i>  &nbsp;&nbsp;&nbsp;Listado de documentos </a></li>
     <li><a  href="resumendiario.php"><i class="fa fa-user"></i>  &nbsp;&nbsp;&nbsp;Resumen diario </a></li>
     <li><a  href="listadoresumendiario.php"><i class="fa fa-user"></i>  &nbsp;&nbsp;&nbsp;Listado resumen diario </a></li>
+     <li onClick="abrir()"><a  href="#"><i class="fa fa-user"></i>  &nbsp;&nbsp;&nbsp;Modulo Facturaci&oacute;n </a></li>
+
     <?php } ?>
     
     
     <li><a href="salir.php"><i class="fa fa-lock"></i>  &nbsp;&nbsp;&nbsp; Salir </a></li>
 </ul>
+<script type="text/javascript">
+	function abrir(){
+		window.open("../Factura", "_blank");
+	}
+</script>

@@ -14,7 +14,7 @@ $xestadoalquiler = 0;
 $xmotivoanulacion = $_POST['txtmotivoanulacion'];
 
 //Actualizar Alquiler
-$consulta="update alquiler set
+$consulta="update alquilerhabitacion set
 	estadoalquiler = '$xestadoalquiler',
 	motivoanulacion = '$xmotivoanulacion'
 	where idalquiler = '$xidalquiler' and idhabitacion = '$xidhabitacion'";

@@ -24,7 +24,7 @@ class Pdf extends TCPDF
 	    //$logo = 'logo/logo.png';
 	    //$this->Image($logo, 10, 13, 80,30, 'PNG', '', '', false, 300, '', false, false, 0, false, false, false);
 	        
-	    $this->SetFont('helvetica', 'B', 10);	   
+	    $this->SetFont('helvetica', 'B', 10);	    
 		$this->setFillColor(255,255,200); 
 		$this->setLineWidth(1);	
 		$this->Text(2,18,'INVERSIONES INKA´S PALACE S.A.C.',FALSE,FALSE,TRUE,0,0,'C');

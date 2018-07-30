@@ -32,7 +32,7 @@ $sqlalquiler = $mysqli->query("select
       alquilerhabitacion.iddocumento
       
       from alquilerhabitacion inner join huesped on huesped.idhuesped = alquilerhabitacion.idhuesped
-      where alquilerhabitacion.codigo_respuesta != 0 
+      where alquilerhabitacion.codigo_respuesta != 0  
       ");   
 
 
