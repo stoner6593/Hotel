@@ -43,7 +43,8 @@ $sqlalquiler = $mysqli->query("select
       alquilerhabitacion.nombrezip,
       alquilerhabitacion.nombre_archivo,
       alquilerhabitacion.total,
-      alquilerhabitacion.descuento
+      alquilerhabitacion.descuento,
+      (SELECT sum(det.total + IFNULL(ven.total,0)) FROM alquilerhabitacion_detalle det LEFT JOIN venta ven ON det.idalquiler=ven.idalquiler WHERE det.idalquiler=alquilerhabitacion.idalquiler) as tot
       
       from alquilerhabitacion inner join huesped on huesped.idhuesped = alquilerhabitacion.idhuesped
       where alquilerhabitacion.codigo_respuesta = 0 ".$concatena." order by  alquilerhabitacion.fecharegistro DESC
@@ -144,7 +145,7 @@ $sqlalquiler = $mysqli->query("select
                               <td><?php echo $xhFila['2']; ?></td>
                               <td><?php echo ($xhFila['9']); ?></td>
                               <td><?php echo $xhFila['8']; ?></td>
-                              <td>S/. <?php echo ($xhFila['14'] - $xhFila['15']); ?></td>
+                              <td>S/. <?php echo ($xhFila['16'] - $xhFila['15']); ?></td>
                               <td><button type="button" class="btn btn-primary mb1 bg-blue tooltip" tooltip="PDF" data-id-pdf="<?php echo $xhFila['13'].'.pdf';?>" id="pdf" style="border:0px; cursor:pointer;"> <i class="fa fa-file-pdf" style="font-size: 14px;"></i></button></td>
                               <td><button type="button" class="btn btn-primary mb1 bg-green tooltip" tooltip="XML" data-id-xml="<?php echo $nombreXml;?>" id="xml" style="border:0px; cursor:pointer;"> <i class="fas fa-file-code" style="font-size: 14px;"></i></button></td>
                               <td><button type="button" class="btn btn-primary mb1 bg-maroon tooltip" tooltip="CDR" data-id-cdr="<?php echo "R-".$xhFila['12'];?>" id="cdr" style="border:0px; cursor:pointer;"> <i class="fas fa-file-archive" style="font-size: 14px;"></i></button></td>

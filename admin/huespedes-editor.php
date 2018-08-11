@@ -39,7 +39,9 @@ $sqlhuesped = $mysqli->query("select
 	huesped.comentarios,
 	huesped.estado,
 	huesped.nograto,
-  huesped.tipo_documento
+  huesped.tipo_documento,
+  huesped.profesion,
+  huesped.ocupacion
 	
 	from huesped 
 	where huesped.idhuesped = '$xidprimario'");
@@ -189,6 +191,19 @@ $xhFila = $sqlhuesped->fetch_row();
                           <td height="10">&nbsp;</td>
                         </tr>
                         <?php } ?>
+                        <tr>
+                          <td height="10"><span class="textoContenido">Profesi&oacute;n</span></td>
+                          <td height="10"><span class="textoContenido">Ocupaci&oacute;n</span></td>
+                          <td height="10">&nbsp;</td>
+                          <td height="10">&nbsp;</td>
+                        </tr>
+                         <tr>
+                          <td width="221" height="30"><input name="txtprofesion" type="text" class="form-control" id="txtprofesion" value="<?php echo $xhFila['13']?>"></td>
+                          <td width="221" height="30"><input name="txtocupacion" type="text" class="form-control" id="txtocupacion" value="<?php echo $xhFila['14']?>"></td>
+                          <td width="221" height="30">&nbsp;</td>
+                          <td width="221" height="30">&nbsp;</td>
+                        </tr>
+                        <tr>
                         <tr>
                           <td height="10"><span class="textoContenido">Comentarios</span></td>
                           <td height="10">&nbsp;</td>

@@ -581,9 +581,9 @@
 
 	            $datos[]= array('RUCReceptor' => $RUCReceptor,
 	            	'TipoDocumento'=>$TipoDocumento,
-	            	'globalIGV'=> $globalIGV, 
-	            	'globalTotalVenta'=>number_format($globalTotalVenta,2),
-	            	'globalGrabadas'=>$globalGrabadas,
+	            	'globalIGV'=> str_replace(",","",$globalIGV), 
+	            	'globalTotalVenta'=>number_format(str_replace(",","",$globalTotalVenta),2),
+	            	'globalGrabadas'=>str_replace(",","",$globalGrabadas),
 	            	'correlativo'=>$xaFila[14],
 	            	'id'=>$xaFila[0]);		       
 
@@ -591,6 +591,7 @@
 	            $i++;
 			}
 			
+			var_dump($datos);
 
 			$this->setResumenDiario($datos);
 

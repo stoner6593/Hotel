@@ -32,6 +32,19 @@ function sumarhoraafecha($nrohoras,$xfechahora){
 	return $fecha = date("Y-m-d H:i:s", $fecha ); 
 }
 
+//Agregada para renovar dia
+function sumarhoraafecha2($nrohoras,$xfechahora){
+	//($fecha=time(); Actual) 
+	/*
+	$fecha = strtotime('2017-06-12 13:35:00'); 
+	$horas = +6; 
+	$fecha += ($horas * 60 * 60);
+	$fecha = date("Y-m-d H:i:s", $fecha ); 
+	*/
+	$fecha  = strtotime("$xfechahora"); /*FechaHora*/ $horas = +$nrohoras; /*NroHoras +-*/ $fecha += ($horas * 60 * 60);
+	return $fecha = date("Y-m-d 12:00:00", $fecha ); 
+}
+
 	
 function mayuscula($dato)
 {

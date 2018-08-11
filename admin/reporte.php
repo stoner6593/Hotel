@@ -172,7 +172,7 @@ $sqlgastos = $mysqli->query("select
                         <td bgcolor="#FFFFFF"><span class="textoContenido">S/ <?php echo number_format($xhabitacion,2);?></span></td>
                         </tr>
                       <tr>
-                        <td width="198" height="25" bgcolor="#FFFFFF"><span class="textoContenido">Ingreso de Productos</span></td>
+                        <td width="198" height="25" bgcolor="#FFFFFF"><span class="textoContenido">Ingreso de Productos/Servicios</span></td>
                         <td width="98" bgcolor="#FFFFFF"><span class="textoContenido">S/ <?php echo number_format($xproducto,2);?></span></td>
                         </tr>
                       <tr>

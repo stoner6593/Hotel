@@ -1,7 +1,7 @@
 <?php
 
 	global $mysqli;
-	$mysqli = new mysqli("127.0.0.1:3307", "root", "", "webhotelcentral");
+	$mysqli = new mysqli("127.0.0.1:3307", "root", "", "prueba");
 	if ($mysqli->connect_errno) {
 		echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno.") " . $mysqli->connect_error;
 	}
@@ -29,7 +29,7 @@
 
 		private $dbpass = '';
 
-		private $dbname = 'webhotelcentral';
+		private $dbname = 'prueba';
 
 		public function conexion () {
 

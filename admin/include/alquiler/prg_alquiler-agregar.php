@@ -333,10 +333,11 @@ if($xtxttipoalquiler == 7){
 	$aFila = $sqlconsulta->fetch_row();
 	$xfechadesde = $aFila['1'];
 	
-	$xfechahasta = sumarhoraafecha(12,$xfechadesde); //Fecha hasta adicionando 6 horas
+	$xfechahasta = sumarhoraafecha2(12,$xfechadesde); //Fecha hasta adicionando 6 horas
 	$xtotal = $xcostohoras;
 	
-	
+
+
 	$consultadet = "insert alquilerhabitacion_detalle (
 		idalquilerdetalle,
 		idalquiler,
@@ -377,7 +378,7 @@ if($xtxttipoalquiler == 7){
 
 		$mysqli->close();	
 		//$_SESSION['msgerror'] = $Men; 
-		header("Location: ../../alquilar-detalle.php?idhabitacion=$xidhabitacion&idalquiler=$xidalquiler"); 
+		//header("Location: ../../alquilar-detalle.php?idhabitacion=$xidhabitacion&idalquiler=$xidalquiler"); 
 		exit; 
 }
 

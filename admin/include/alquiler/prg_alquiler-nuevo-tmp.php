@@ -88,7 +88,7 @@ if($xtxttipoalquiler == 2){
 	
 	$xfechadesde = Cfecha($txtfechadesde).' '.date('H:i:s'); //fecha de Hoy
 	
-	$xfechahasta = Cfecha($_POST['txtfechahasta']).' '.date('H:i:s'); //Fecha hasta 
+	$xfechahasta = Cfecha($_POST['txtfechahasta']).' '.date("12:00:00");//date('H:i:s'); //Fecha hasta 
 	//$xtotal = $txtcostodiario * $txtnrodias;
 	
 	//Obtener Precios

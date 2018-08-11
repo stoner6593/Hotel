@@ -66,6 +66,7 @@ $consultahabitacion = "update habitacion set
 
 	$MontoVisa=	$xaFila[15];
 	$Descuento=	$xaFila[16];
+	$MontoEfectivo=$xaFila[14];
 
 	//Detalle Aquiler
 	$sqldetalle = $mysqli->query("select
@@ -132,19 +133,19 @@ $consultahabitacion = "update habitacion set
 	$consultaturno = "update ingresosturno set
 		totalhabitacion = (totalhabitacion - $TotalAlquiler) ,
 		totalproducto =  totalproducto - $TotalProductos,
-		totalefectivo = (totalefectivo - ($TotalAlquiler + $TotalProductos)) ,
+		totalefectivo = (totalefectivo - ($MontoEfectivo + $TotalProductos)) ,
 		totalvisa = totalvisa - $MontoVisa,
 		totaldescuento = totaldescuento - $Descuento
-		where idturno = '$xidturno'";
+		where idturno = '$xidturno'";   //(totalefectivo - ($TotalAlquiler + $TotalProductos)) ,
 		if($mysqli->query($consultaturno)){}
 
 if($mysqli->query($consultahabitacion)){}
 
-
+//echo $consultaturno;
 
 			
 $mysqli->close();	
 //$_SESSION['msgerror'] = $Men;
-header("Location: ../../control-habitaciones.php"); exit;
+	header("Location: ../../control-habitaciones.php"); exit;
 //************************************************************
 ?>

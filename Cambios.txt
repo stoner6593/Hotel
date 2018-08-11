@@ -34,3 +34,9 @@ Y k en la boleta electrónica Salga visa o efectivo (OK)
 
 
 
+SELECT ah.nrohabitacion,DATE_FORMAT(ah.fecharegistro, "%h:%i:%S") as horaingreso,DATE_FORMAT(ah.fecharegistro, "%d-%m-%Y") as diasalida,
+"" as tarifa,
+FROM huesped h INNER JOIN alquilerhabitacion ah ON h.idhuesped=ah.idhuesped
+INNER JOIN estadocivil es ON h.idestadocivil=es.idestadocivil
+
+

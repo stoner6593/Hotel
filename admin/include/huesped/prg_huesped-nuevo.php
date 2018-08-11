@@ -17,6 +17,8 @@ $xtxtpais = mayuscula($_POST['txtpais']);
 $xtxtprocedencia = mayuscula($_POST['txtprocedencia']);
 $xtxtdestino = mayuscula($_POST['txtdestino']);
 $xtxtcomentarios = mayuscula($_POST['txtcomentarios']);
+$xtxtprofesion = mayuscula($_POST['txtprofesion']);
+$xtxtocupacion = mayuscula($_POST['txtocupacion']);
 $xestado = 1;
 $tipo_documento=$_POST['tipo_documento'];
 
@@ -51,7 +53,9 @@ $consulta="insert huesped (
 	destino,
 	comentarios,
 	estado,
-	tipo_documento
+	tipo_documento,
+	profesion,
+	ocupacion
 		
 ) values (
 
@@ -66,7 +70,9 @@ $consulta="insert huesped (
 	'$xtxtdestino',
 	'$xtxtcomentarios',
 	'$xestado',
-	'$tipo_documento'
+	'$tipo_documento',
+	'$xtxtprofesion',
+	'$xtxtocupacion'
 		
 	)";
 	//echo $consulta;

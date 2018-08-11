@@ -17,6 +17,8 @@ $xtxtdestino = mayuscula($_POST['txtdestino']);
 $xtxtcomentarios = mayuscula($_POST['txtcomentarios']);
 $tipo_documento=$_POST['tipo_documento'];
 $txtnograta = $_POST["txtnograta"];
+$xtxtprofesion = mayuscula($_POST['txtprofesion']);
+$xtxtocupacion = mayuscula($_POST['txtocupacion']);
 //*****************************************************
 
 	
@@ -32,7 +34,9 @@ $consulta="update huesped set
 	destino = '$xtxtdestino',
 	comentarios = '$xtxtcomentarios',
 	nograto = '$txtnograta',
-	tipo_documento='$tipo_documento'
+	tipo_documento='$tipo_documento',
+	profesion='$xtxtprofesion',
+	ocupacion='$xtxtocupacion'
 
 	where idhuesped = '$xidprimario'";
 
